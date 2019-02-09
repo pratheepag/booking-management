@@ -65,17 +65,14 @@
         </p>
       </div>
       
-      <form action="#" th:action="@{/admin/editPackage}" th:object="${editPackage}" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="id" th:field="${editPackage.id}" />
+      <form action="#" th:action="@{/admin/editPackage}" th:object="${packages}" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="id" id="id" th:field="${packages.id}" />
 			<label for="textinput1">
 	          Enter Name:
 	        </label>	
 			 <input type="text" th:field="*{name}"
 	        		 th:class="${#fields.hasErrors('name')}? fieldError" />
 			
-			<ul>
-  				<li th:each="err : ${#fields.errors('name')}" th:text="${err}" />
-			</ul>
 			<br/>
 			<label for="textinput1">
 	          Enter Description:
@@ -83,9 +80,6 @@
 			<input type="text" th:field="*{description}"
 	        		 th:class="${#fields.hasErrors('description')}? fieldError" />
 			
-			<ul>
-  				<li th:each="err : ${#fields.errors('description')}" th:text="${err}" />
-			</ul>
 			<br/>
 			<label for="textinput1">
 	          Enter Price:
@@ -99,9 +93,19 @@
 			<br/>
 			<label for="textinput1">
 	          Enter Image:
-	        </label>	
-			<input type="file" name="image" id="image" />
+	        </label>
+	       <!-- <img alt="Image" th:src="@{'/uploads/'+${packages.image}}" width="50" height="50"/>  -->
+			<input type="file" name="file" id="file" />
 			<br/>
+			<label for="textinput1">
+	          Enter Category:
+	        </label>	
+			<select id="hobbies" th:field="*{categoryList}" size="10" multiple="multiple">
+				<option th:each="category : ${categoryList}"
+						th:value="${{category}}"
+						th:text="${category.name}">
+					Cinema
+				</option>
 			<input type="submit" class="btn" value="Submit"/>
 	  </form>
      

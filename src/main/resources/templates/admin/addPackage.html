@@ -64,20 +64,17 @@
           &nbsp;
         </p>
       </div>
-      <form action="#" th:action="@{/admin/addPackage}" th:object="${addPackage}" method="post" enctype="multipart/form-data">
-      		<!-- <ul>
-  				<li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
-			</ul>
-			 -->
+      <form action="#" th:action="@{/admin/addPackage}" th:object="${packages}" method="post" enctype="multipart/form-data">
+      		<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+			    <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>    
+			</div>
+			
 			<label for="textinput1">
 	          Enter Name:
 	        </label>	
-	        <input type="text" th:field="*{name}"
-	        		 th:class="${#fields.hasErrors('name')}? fieldError" />
+	        <input type="text" th:field="*{name}" th:class="${#fields.hasErrors('name')}? fieldError" />
 			
-			<ul>
-  				<li th:each="err : ${#fields.errors('name')}" th:text="${err}" />
-			</ul>
+			<p th:if="${#fields.hasErrors('name')}" class="label label-danger" th:errors="*{name}">Incorrect Name</p>
 			<br/>
 			<label for="textinput1">
 	          Enter Description:
@@ -102,12 +99,27 @@
 			<label for="textinput1">
 	          Enter Image:
 	        </label>	
-			 <input type="file" name="image" id="image" />
+			 <input type="file" name="file" id="file" />
 	        		 <!-- th:class="${#fields.hasErrors('file')}? fieldError" --> 
 			
 			<!-- <ul>
   				<li th:each="err : ${#fields.errors('file')}" th:text="${err}" />
 			</ul> -->
+			<br/>
+			<label for="textinput1">
+	          Enter Category:
+	        </label>	
+			<select id="hobbies" th:field="*{categoryList}" size="10" multiple="multiple">
+				<option th:each="category : ${categoryList}"
+						th:value="${{category}}"
+						th:text="${category.name}">
+					Cinema
+				</option>
+</select>
+			
+			<ul>
+  				<li th:each="err : ${#fields.errors('categoryList')}" th:text="${err}" />
+			</ul>
 			<br/>
 			<input type="submit" class="btn" value="Submit"/>
 	  </form>

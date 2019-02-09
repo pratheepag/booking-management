@@ -79,8 +79,8 @@
 		    <td ><p th:text=${item.name} /></td>
 		    <td><p th:text=${item.description} /></td>
 		    <td><p th:text=${item.price} /></td>
-		    <td><p th:text=${item.image} /></td>
-		    <td><a th:href="@{'editPackage/'+${item.id}+'.html'}">Edit</a> | <a th:href="@{'deletePackage/'+${item.id}+'.html'}">Delete</a></td>
+		    <td><img alt="Image" th:src="@{'/uploads/'+${item.image}}" width="50" height="50"/></td>
+		    <td><a th:href="@{'editPackage/'+${item.id}}">Edit</a> | <a th:href="@{'deletePackage/'+${item.id}}">Delete</a></td>
 		    </tr>
 		</table>
 	</div>

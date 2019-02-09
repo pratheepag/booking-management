@@ -1,16 +1,21 @@
 package com.booking.bookingmanagement.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
-import org.springframework.web.multipart.MultipartFile;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="package")
@@ -24,6 +29,7 @@ public class Packages  implements Serializable  {
 	private Long id;
 	
 	@NotNull
+	@Size(min = 3, max = 200, message = "About Me must be between 3 and 200 characters")
 	@Column(name="name")
 	private String name;
 	
@@ -36,19 +42,34 @@ public class Packages  implements Serializable  {
 	private float price;
 
 	
-	@Lob
 	@Column(name="image")
-	private byte[]  image;
+	private String  image;
+	
+	/* @OneToMany
+	@JoinTable(name = "category", joinColumns = {@JoinColumn(name="category_id")}) */
+	@ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinTable(name = "package_category", 
+             joinColumns = { @JoinColumn(name = "package_id") }, 
+             inverseJoinColumns = { @JoinColumn(name = "category_id") })
+	Set<Category> categoryList = new HashSet<Category>();
 
 	public String getDescription() {
 		return description;
+	}
+
+	public Set<Category> getCategoryList() {
+		return categoryList;
+	}
+
+	public void setCategoryList(Set<Category> categoryList) {
+		this.categoryList = categoryList;
 	}
 
 	public Long getId() {
 		return id;
 	}
 
-	public byte[]  getImage() {
+	public String  getImage() {
 		return image;
 	}
 
@@ -68,7 +89,7 @@ public class Packages  implements Serializable  {
 		this.id = id;
 	}
 
-	public void setImage(byte[]  image) {
+	public void setImage(String  image) {
 		this.image = image;
 	}
 

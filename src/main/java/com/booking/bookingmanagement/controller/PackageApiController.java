@@ -13,7 +13,7 @@ import com.booking.bookingmanagement.service.PackageService;
 
 @RestController
 public class PackageApiController {
-	@Autowired
+	/*@Autowired
 	private PackageService packageService;
 		
     @RequestMapping("/packagesList")
@@ -24,5 +24,5 @@ public class PackageApiController {
     @RequestMapping("/packages/{id}")
     public Optional<Packages> findById(@PathVariable("id") Long id) {
         return packageService.findPackage(id);
-    }
+    }*/
 }
