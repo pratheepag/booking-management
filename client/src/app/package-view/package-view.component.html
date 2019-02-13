@@ -1,0 +1,21 @@
+<mat-card>
+  
+    <mat-card-header>
+      <mat-card-title><h2>{{packages.name ? 'Edit' : 'Add'}} Package</h2></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="giphy">
+        <img mat-list-avatar src="http://localhost:8080/uploads/{{packages.image}}" height="50" width="50" alt="{{packages.name}}">
+        <h3 mat-line>{{packages.name}}</h3>
+      </div>
+     
+    </mat-card-content>
+    <mat-card-actions>
+      
+      <a mat-button routerLink="/package-list">Cancel</a>
+    </mat-card-actions>
+    <mat-card-footer>
+      
+    </mat-card-footer>
+  
+</mat-card>

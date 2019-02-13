@@ -1,0 +1,11 @@
+<mat-card>
+  <mat-card-header>Package List</mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let item of packages">
+        <img mat-list-avatar src="http://localhost:8080/uploads/{{item.image}}" alt="{{item.name}}">
+        <h3 mat-line><a mat-button [routerLink]="['/package-view', item.id]">{{item.name}}</a></h3>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

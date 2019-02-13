@@ -49,7 +49,7 @@ public class PackageServiceImpl implements PackageService {
 	@Override
 	public List<Packages> findAllPackages() {
 		// TODO Auto-generated method stub
-		return null;
+		return packageRepository.findAll();
 	}
 
 }
